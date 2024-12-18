@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { IKImage } from "imagekitio-react";
 import Image from "./Image";
 
 const Navbar = () => {
