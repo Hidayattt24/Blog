@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 /* Background color e6e6ff */
-body { 
-    background-color: #e6e6ff;
-    width: 100vw;
-    overflow-x: hidden;
-    font-family: "Montserrat", sans-serif;
+body {
+  background-color: #e6e6ff;
+  width: 100vw;
+  overflow-x: hidden;
+  font-family: "Montserrat", sans-serif;
+}
+
+.animatedButton {
+  animation-duration: 7s; /* Atur durasi animasi, misalnya 2 detik */
 }
