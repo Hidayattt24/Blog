@@ -12,27 +12,39 @@ import PostListPage from "./routes/PostListPage.jsx";
 import Write from "./routes/Write.jsx";
 import LoginPage from "./routes/LoginPage.jsx";
 import RegisterPage from "./routes/RegisterPage.jsx";
+import SInglePostPage from "./routes/SInglePostPage.jsx";
+import MainLayout from "./layouts/MainLayout.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Homepage />,
-  },
-  {
-    path: "/posts",
-    element: <PostListPage />,
-  },
-  {
-    path: "/write",
-    element: <Write />,
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Homepage />,
+      },
+      {
+        path: "/posts",
+        element: <PostListPage />,
+      },
+      {
+        // Slug untuk membuat router yang di inputkan salah tetapi tetap di page
+        path: "/:slug",
+        element: <SInglePostPage />,
+      },
+      {
+        path: "/write",
+        element: <Write />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />,
+      },
+    ],
   },
 ]);
 
