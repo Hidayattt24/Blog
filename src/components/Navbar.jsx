@@ -14,8 +14,8 @@ const Navbar = () => {
     <div className="w-full h-16 md:h-20 flex items-center justify-between">
       {/* LOGO */}
       <Link to="/" className="flex items-center gap-4 text-2xl font-bold">
-        <Image src="logo.png" alt="lama Logo" w={32} h={32} />
-        <span>lamalogo</span>
+        {/* <Image src="logo.png" alt="lama Logo" w={32} h={32} /> */}
+        <span className="reenie-beanie-regular text-3xl">WriteNShare</span>
       </Link>
       {/* MOBILE MENU */}
       <div className="md:hidden">

@@ -19,7 +19,9 @@ const PostListItem = () => {
         </Link>
         <div className="flex items-center gap-2 text-gray-400 text-sm">
           <span>Written by</span>
-          <Link className="text-blue-800">Jhon Doe</Link>
+          <Link className="reenie-beanie-regular text-3xl text-blue-800 ">
+            Jhon Doe
+          </Link>
           <span>on</span>
           <Link className="text-blue-800">Web Design</Link>
           <span>2 days ago</span>

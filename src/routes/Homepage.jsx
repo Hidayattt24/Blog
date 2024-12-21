@@ -16,10 +16,10 @@ const Homepage = () => {
       <div className="flex items-center justify-between">
         {/* titles */}
         <div className="">
-          <h1 className="text-gray-800 text-2xl md:text-5xl lg:text-6xl font-bold">
+          <h1 className="reenie-beanie-regular text-gray-800 text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
           </h1>
-          <p className="mt-8 text-md md:text-xl">
+          <p className=" mt-8 text-md md:text-xl">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, sint?
           </p>
         </div>
@@ -37,7 +37,7 @@ const Homepage = () => {
               fill="none"
               d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"
             />
-            <text>
+            <text className="reenie-beanie-regular text-3xl">
               <textPath href="#circlePath" startOffset="0%">
                 Write your story •
               </textPath>
@@ -68,7 +68,7 @@ const Homepage = () => {
       <FeaturedPosts />
       {/* POST */}
       <div className="">
-        <h1 className="my-8 text-2xl text-blue-800 font-bold">Recent Post</h1>
+        <h1 className=" my-8 text-4xl text-blue-800 font-bold ">Recent Post</h1>
         <PostList />
       </div>
     </div>

@@ -12,7 +12,7 @@ import PostListPage from "./routes/PostListPage.jsx";
 import Write from "./routes/Write.jsx";
 import LoginPage from "./routes/LoginPage.jsx";
 import RegisterPage from "./routes/RegisterPage.jsx";
-import SInglePostPage from "./routes/SInglePostPage.jsx";
+import SinglePostPage from "./routes/SInglePostPage.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import { ClerkProvider } from "@clerk/clerk-react";
 
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       {
         // Slug untuk membuat router yang di inputkan salah tetapi tetap di page
         path: "/:slug",
-        element: <SInglePostPage />,
+        element: <SinglePostPage />,
       },
       {
         path: "/write",

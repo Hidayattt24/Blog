@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,6 +10,12 @@ body {
   width: 100vw;
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
+}
+
+.reenie-beanie-regular {
+  font-family: "Reenie Beanie", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .animatedButton {
