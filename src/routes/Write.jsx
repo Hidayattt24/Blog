@@ -1,15 +1,31 @@
 import { useUser } from "@clerk/clerk-react";
 import "react-quill-new/dist/quill.snow.css";
 import ReactQuill from "react-quill-new";
+import { PropagateLoader } from "react-spinners";
 
 const Write = () => {
   const { isLoaded, isSignedIn } = useUser();
 
   if (!isLoaded) {
-    return <div className="">Loading...</div>;
-  }
-  if (!isLoaded && !isSignedIn) {
-    return <div className="">You should login!</div>;
+    return (
+      <div>
+        <PropagateLoader
+          color="#0A5EB0"
+          size={30}
+          cssOverride={{
+            display: "block",
+            margin: "0 auto",
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+          loading={true}
+        />
+      </div>
+    );
+  } else if (!isSignedIn) {
+    return <div>You should login!</div>;
   }
 
   return (
@@ -26,7 +42,7 @@ const Write = () => {
         />
         <div className="flex items-center gap-4">
           <label htmlFor="" className="text-sm">
-            Choose a category :
+            Choose a category:
           </label>
           <select
             name="category"
