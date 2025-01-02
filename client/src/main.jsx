@@ -15,13 +15,10 @@ import RegisterPage from "./routes/RegisterPage.jsx";
 import SinglePostPage from "./routes/SInglePostPage.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import { ClerkProvider } from "@clerk/clerk-react";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 // Import your Publishable Key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -66,11 +63,14 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
+        <ToastContainer position="bottom-right" />
       </QueryClientProvider>
     </ClerkProvider>
   </StrictMode>
 );
 
-// 33:01
+// Post man
+// Ngrok
+// Manggodb
