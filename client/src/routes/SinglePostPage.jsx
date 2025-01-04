@@ -1,10 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Image from "../components/Image";
 import PostMenuAction from "../components/PostMenuAction";
 import Search from "../components/Search";
 import Comments from "../components/Comments";
+import { useQuery } from "react-query";
+import axios from "axios";
+import { format } from "timeago.js";
+
+const fetchPost = async (slug) => {
+  const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts/${slug}`);
+  return res.data;
+};
 
 const SinglePostPage = () => {
+  const { slug } = useParams();
+
+  const { isPending, eror, data } = useQuery({
+    queryKey: ["posts", slug],
+    queryFn: () => fetchPost(slug),
+  });
+
+  if (isPending) return "loading...";
+  if (eror) return "Something went wrong!" + eror.message;
+  if (!data) return "Post not found";
+
   return (
     <div className="flex flex-col gap-8">
       {/* detail */}
@@ -12,29 +31,26 @@ const SinglePostPage = () => {
         <div className="lg:w-3/5 flex flex-col gap-8">
           {/* Title */}
           <h1 className="text-xl md:text-3xl xl:text-4xl 2xl:text-5xl font-semibold">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo,
-            molestias praesentium eos ad nemo nostrum!
+            {data.title}
           </h1>
           {/* Desc */}
           <div className="flex items-center gap-2 text-gray-400 text-sm">
             <span>Written by</span>
             <Link className="reenie-beanie-regular text-3xl text-blue-800 ">
-              Jhon Doe
+              {data.user.username}
             </Link>
             <span>on</span>
-            <Link className="text-blue-800">Web Design</Link>
-            <span>2 days ago</span>
+            <Link className="text-blue-800">{data.category}</Link>
+            <span>{format(data.createdAt)}</span>
           </div>
-          {/*  */}
-          <p className="text-gray-500 font-medium">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-            debitis perspiciatis pariatur error consectetur, voluptatem placeat
-            dolorum! Odio, cum sint.
-          </p>
+          {/* Desc */}
+          <p className="text-gray-500 font-medium">{data.desc}</p>
         </div>
-        <div className="hidden lg:block w-2/5">
-          <Image src="postImg.jpeg" w="600" className="rounded-2xl" />
-        </div>
+        {data.img && (
+          <div className="hidden lg:block w-2/5">
+            <Image src={data.img} w="600" className="rounded-2xl" />
+          </div>
+        )}
       </div>
       {/* content */}
       <div className="flex flex-col md:flex-row gap-12 justify-between">
@@ -130,14 +146,16 @@ const SinglePostPage = () => {
           <h1 className="mb-4 text-lg font-medium">Author</h1>
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-8">
-              <Image
-                src="userImg.jpeg"
-                className="w-12 h-12 rounded-full object-cover"
-                w="48"
-                h="48"
-              />
+              {data.user.img && (
+                <Image
+                  src={data.user.img}
+                  className="w-12 h-12 rounded-full object-cover"
+                  w="48"
+                  h="48"
+                />
+              )}
               <Link className="reenie-beanie-regular text-3xl text-blue-800">
-                Jhon Doe
+                {data.user.username}
               </Link>
             </div>
             <p className="text-sm text-gray-500">Lorem ipsum dolor sit amet.</p>
@@ -174,7 +192,8 @@ const SinglePostPage = () => {
           <Search />
         </div>
       </div>
-      <Comments />
+      <Comments postId={data._id} />
+      
     </div>
   );
 };

@@ -13,7 +13,7 @@ const PostListItem = ({ post }) => {
       )}
       {/* details */}
       <div className="flex flex-col gap-4 xl:w-2/3">
-        <Link to="/test" className="text-4xl font-semibold">
+        <Link to={`/${post.slug}`} className="text-4xl font-semibold">
           {post.title}
         </Link>
         <div className="flex items-center gap-2 text-gray-400 text-sm">
@@ -35,3 +35,5 @@ const PostListItem = ({ post }) => {
 };
 
 export default PostListItem;
+
+// 4:25:00
