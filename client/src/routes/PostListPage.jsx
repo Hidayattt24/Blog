@@ -7,7 +7,9 @@ const PostListPage = () => {
 
   return (
     <div className="">
-      <h1 className="mb-8 text-2xl">Development Blog</h1>
+      <h1 className="reenie-beanie-regular mb-8 text-5xl text-blue-800">
+        Blog
+      </h1>
       <button
         onClick={() => setOpen((prev) => !prev)}
         className="bg-blue-800 text-sm text-white px-4 py-2 rounded-2xl mb-4 md:hidden"
