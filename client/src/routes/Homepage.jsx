@@ -17,10 +17,11 @@ const Homepage = () => {
         {/* titles */}
         <div className="">
           <h1 className="reenie-beanie-regular text-gray-800 text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Unleash Your Creativity, One Story at a Time
           </h1>
           <p className=" mt-8 text-md md:text-xl">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, sint?
+            Welcome to WriteNShare — where ideas thrive, stories inspire, and
+            your voice connects with the world.
           </p>
         </div>
         {/* animated button */}

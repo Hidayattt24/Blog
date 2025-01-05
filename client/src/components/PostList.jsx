@@ -1,17 +1,24 @@
-import { useInfiniteQuery, useQuery } from "react-query";
 import PostListItem from "./PostListItem";
+import { useInfiniteQuery, useQuery } from "react-query";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { SyncLoader } from "react-spinners";
+import { useSearchParams } from "react-router-dom";
+import { BarLoader, ClockLoader, SyncLoader } from "react-spinners";
 
-const fetchPosts = async (pageParam) => {
+const fetchPosts = async (pageParam, searchParams) => {
+  const searchParamsObj = Object.fromEntries([...searchParams]);
+
+  console.log(searchParamsObj);
+
   const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`, {
-    params: { page: pageParam, limit: 2 },
+    params: { page: pageParam, limit: 10, ...searchParamsObj },
   });
   return res.data;
 };
 
-const PostList = (pageParam) => {
+const PostList = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const {
     data,
     error,
@@ -21,18 +28,18 @@ const PostList = (pageParam) => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["posts"],
-    queryFn: ({ pageParam = 1 }) => fetchPosts(pageParam),
+    queryKey: ["posts", searchParams.toString()],
+    queryFn: ({ pageParam = 1 }) => fetchPosts(pageParam, searchParams),
     initialPageParam: 1,
     getNextPageParam: (lastPage, pages) =>
       lastPage.hasMore ? pages.length + 1 : undefined,
   });
 
-  console.log(data);
+  // if (status === "loading") return "Loading...";
+  if (isFetching) return "Loading...";
 
-  if (status === "loading") return "Loading...";
-
-  if (status === "error") return "SOmething went wrong!";
+  // if (status === "error") return "Something went wrong!";
+  if (error) return "Something went wrong!";
 
   const allPosts = data?.pages?.flatMap((page) => page.posts) || [];
 
@@ -40,21 +47,18 @@ const PostList = (pageParam) => {
     <InfiniteScroll
       dataLength={allPosts.length}
       next={fetchNextPage}
-      hasMore={hasNextPage}
-      loader={
-        <div className="justify-items-center mb-10">
-          <SyncLoader
-            color="#0A5EB0"
-            margin={5}
-            size={20}
-            speedMultiplier={1}
-          />
-        </div>
-      }
+      hasMore={!!hasNextPage}
+      loader={<h4>Loading more posts...</h4>}
       endMessage={
-        <p className="reenie-beanie-regular text-3xl text-center mb-10 text-blue-600">
-          <b>All posts loaded!</b>
-        </p>
+        <div className="flex flex-col items-center justify-center mb-10">
+          <p className="reenie-beanie-regular text-3xl mt-4 text-blue-600">
+            <b>All posts loaded!</b>
+            <div className="flex flex-col items-center justify-center mb-3">
+              <BarLoader color="#0A5EB0" height={3} />
+            </div>
+          </p>
+        </div>
+
       }
     >
       {allPosts.map((post) => (
