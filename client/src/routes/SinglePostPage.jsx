@@ -56,18 +56,7 @@ const SinglePostPage = () => {
       <div className="flex flex-col md:flex-row gap-12 justify-between">
         {/* text */}
         <div className="lg:text-lg flex flex-col gap-6 text-justify">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias neque
-            fugiat itaque quas esse sunt cupiditate possimus cumque asperiores,
-            dolorem, dolores eligendi amet perferendis illum repellat nam quam
-            facilis veritatis. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Sint ipsa fuga nihil numquam, quam dicta quas
-            exercitationem aliquam maxime quaerat, enim autem culpa sequi at!
-            Earum facere in ducimus culpa. Lorem ipsum dolor sit amet
-            consectetur, adipisicing elit. Libero fuga modi amet error aliquid
-            eos nobis vero soluta facilis, voluptatem, voluptates quod suscipit
-            obcaecati voluptate quaerat laborum, voluptatum dicta ipsum.
-          </p>
+          <p>{data.content}</p>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias neque
             fugiat itaque quas esse sunt cupiditate possimus cumque asperiores,
@@ -168,7 +157,7 @@ const SinglePostPage = () => {
               </Link>
             </div>
           </div>
-          <PostMenuAction />
+          <PostMenuAction post={data} />
           <h1 className="mt-8 mb-4 text-sm font-medium">Catagories</h1>
           <div className="flex flex-col gap-2 text-sm">
             <Link className="underline">All</Link>
@@ -193,11 +182,10 @@ const SinglePostPage = () => {
         </div>
       </div>
       <Comments postId={data._id} />
-      
     </div>
   );
 };
 
 export default SinglePostPage;
 
-// 1:32:19
+
