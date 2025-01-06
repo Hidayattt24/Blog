@@ -8,10 +8,10 @@ import { BarLoader, ClockLoader, SyncLoader } from "react-spinners";
 const fetchPosts = async (pageParam, searchParams) => {
   const searchParamsObj = Object.fromEntries([...searchParams]);
 
-  console.log(searchParamsObj);
+  // console.log(searchParamsObj);
 
   const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`, {
-    params: { page: pageParam, limit: 20, ...searchParamsObj },
+    params: { page: pageParam, limit: 10, ...searchParamsObj },
   });
   return res.data;
 };
@@ -53,10 +53,10 @@ const PostList = () => {
         <div className="flex flex-col items-center justify-center mb-10">
           <p className="reenie-beanie-regular text-3xl mt-4 text-blue-600">
             <b>All posts loaded!</b>
-            <div className="flex flex-col items-center justify-center mb-3">
-              <BarLoader color="#0A5EB0" height={3} />
-            </div>
           </p>
+          <div className="flex flex-col items-center justify-center mb-3">
+            <BarLoader color="#0A5EB0" height={3} />
+          </div>
         </div>
       }
     >
