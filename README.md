@@ -104,4 +104,4 @@ node --env-file .env --watch index.js
 
 Website WriteNShare berhasil dijalankan. Anda dapat mengaksesnya melalui `http://localhost:5173` untuk memulai pengalaman blogging Anda.
 
-![Screenshot](/screenshoot.png.png "WriteNShare")
+![Screenshot](/screenshoot.png "WriteNShare")
